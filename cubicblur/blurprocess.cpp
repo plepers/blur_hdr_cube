@@ -15,7 +15,9 @@ typedef struct core_blur_params {
 float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve );
 
 
-void getBlur( void* in ) {
+
+
+void* getBlur( void* in ) {
 	
 	BLURPARAM* params = (BLURPARAM*) in;
 
@@ -91,6 +93,8 @@ void getBlur( void* in ) {
 	params->res[0] = float( trR );
 	params->res[1] = float( trG );
 	params->res[2] = float( trB );
+    
+    return NULL;
 
 }
 
@@ -114,6 +118,22 @@ float** blurFaces( float ** faces, int inputSize, int outputSize, float power, f
 }
 
 
+#ifdef OSX
+
+void WaitForThreads( int NUM_THREADS, pthread_t* threads ){
+    
+    int rc, i;
+    
+    for (i=0; i<NUM_THREADS; ++i) {
+        // block until thread i completes
+        rc = pthread_join(threads[i], NULL);
+        assert(0 == rc);
+    }
+    
+}
+#endif
+
+
 float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve ) {
 
 	int j;
@@ -131,7 +151,19 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 	for (j = 0; j < 6; ++j) 
 		bfaces[j] = (float *) malloc( outputSize*outputSize*3 * sizeof( float ) );
 
+
+    
+    
+#ifdef WIN
 	HANDLE* handles = (HANDLE*) malloc( outputSize * sizeof( HANDLE ) );
+#endif
+
+#ifdef OSX
+    pthread_t threads[outputSize];
+    int rc;
+#endif
+    
+    
 	BLURPARAM* params = (BLURPARAM*) malloc( outputSize * sizeof( BLURPARAM ) );
 
 	// --------------------------  left
@@ -155,12 +187,26 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].curve = curve;
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
-
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
 
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
+        
 	}
 	printf( "." );
 
@@ -185,10 +231,25 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
 
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
+            
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
 	}
 	printf( "." );
 
@@ -214,10 +275,25 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
 
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
+            
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
 	}
 	printf( "." );
 
@@ -242,10 +318,25 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
 
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
+            
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
 	}
 	printf( "." );
 
@@ -271,10 +362,25 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
 
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
+            
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
 	}
 	printf( "." );
 
@@ -301,19 +407,37 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			params[x].facesize= inputSize;
 			params[x].res= &bface[c*3];
 
+#ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
+#endif
+            
+#ifdef OSX
+            rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
+            assert(0 == rc);
+#endif
 			c++;
+            
 		}
+        
+#ifdef WIN
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
+#endif
+        
+#ifdef OSX
+        WaitForThreads( outputSize, threads );
+#endif
 
 		//printf( "frontface line %i \n", y );
 	}
 	printf( ".\n" );
 
-
+	
+#ifdef WIN
 	Sleep( 50 );
-	free( params );
 	free( handles );
+#endif
+    
+	free( params );
 
 	return bfaces;
 }

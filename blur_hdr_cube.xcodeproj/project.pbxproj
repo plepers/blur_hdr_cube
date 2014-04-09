@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FDC326918F5943C002F121F /* blurprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC326018F5943C002F121F /* blurprocess.cpp */; };
+		1FDC326A18F5943C002F121F /* cubicblur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC326218F5943C002F121F /* cubicblur.cpp */; };
+		1FDC326B18F5943C002F121F /* hdrloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC326418F5943C002F121F /* hdrloader.cpp */; };
+		1FDC326C18F5943C002F121F /* lodepng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC326618F5943C002F121F /* lodepng.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1FDC325218F59404002F121F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1FDC325418F59404002F121F /* blur_hdr_cube */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = blur_hdr_cube; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FDC326018F5943C002F121F /* blurprocess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = blurprocess.cpp; path = cubicblur/blurprocess.cpp; sourceTree = SOURCE_ROOT; };
+		1FDC326118F5943C002F121F /* blurprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = blurprocess.h; path = cubicblur/blurprocess.h; sourceTree = SOURCE_ROOT; };
+		1FDC326218F5943C002F121F /* cubicblur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cubicblur.cpp; path = cubicblur/cubicblur.cpp; sourceTree = SOURCE_ROOT; };
+		1FDC326318F5943C002F121F /* cubicblur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cubicblur.h; path = cubicblur/cubicblur.h; sourceTree = SOURCE_ROOT; };
+		1FDC326418F5943C002F121F /* hdrloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hdrloader.cpp; path = cubicblur/hdrloader.cpp; sourceTree = SOURCE_ROOT; };
+		1FDC326518F5943C002F121F /* hdrloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hdrloader.h; path = cubicblur/hdrloader.h; sourceTree = SOURCE_ROOT; };
+		1FDC326618F5943C002F121F /* lodepng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lodepng.cpp; path = cubicblur/lodepng.cpp; sourceTree = SOURCE_ROOT; };
+		1FDC326718F5943C002F121F /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lodepng.h; path = cubicblur/lodepng.h; sourceTree = SOURCE_ROOT; };
+		1FDC326818F5943C002F121F /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = cubicblur/targetver.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FDC325118F59404002F121F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDC324B18F59404002F121F = {
+			isa = PBXGroup;
+			children = (
+				1FDC325618F59404002F121F /* blur_hdr_cube */,
+				1FDC325518F59404002F121F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FDC325518F59404002F121F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FDC325418F59404002F121F /* blur_hdr_cube */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1FDC325618F59404002F121F /* blur_hdr_cube */ = {
+			isa = PBXGroup;
+			children = (
+				1FDC326018F5943C002F121F /* blurprocess.cpp */,
+				1FDC326118F5943C002F121F /* blurprocess.h */,
+				1FDC326218F5943C002F121F /* cubicblur.cpp */,
+				1FDC326318F5943C002F121F /* cubicblur.h */,
+				1FDC326418F5943C002F121F /* hdrloader.cpp */,
+				1FDC326518F5943C002F121F /* hdrloader.h */,
+				1FDC326618F5943C002F121F /* lodepng.cpp */,
+				1FDC326718F5943C002F121F /* lodepng.h */,
+				1FDC326818F5943C002F121F /* targetver.h */,
+			);
+			path = blur_hdr_cube;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FDC325318F59404002F121F /* blur_hdr_cube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FDC325D18F59404002F121F /* Build configuration list for PBXNativeTarget "blur_hdr_cube" */;
+			buildPhases = (
+				1FDC325018F59404002F121F /* Sources */,
+				1FDC325118F59404002F121F /* Frameworks */,
+				1FDC325218F59404002F121F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = blur_hdr_cube;
+			productName = blur_hdr_cube;
+			productReference = 1FDC325418F59404002F121F /* blur_hdr_cube */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FDC324C18F59404002F121F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Pierre Lepers";
+			};
+			buildConfigurationList = 1FDC324F18F59404002F121F /* Build configuration list for PBXProject "blur_hdr_cube" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1FDC324B18F59404002F121F;
+			productRefGroup = 1FDC325518F59404002F121F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FDC325318F59404002F121F /* blur_hdr_cube */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FDC325018F59404002F121F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDC326918F5943C002F121F /* blurprocess.cpp in Sources */,
+				1FDC326C18F5943C002F121F /* lodepng.cpp in Sources */,
+				1FDC326A18F5943C002F121F /* cubicblur.cpp in Sources */,
+				1FDC326B18F5943C002F121F /* hdrloader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1FDC325B18F59404002F121F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1FDC325C18F59404002F121F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1FDC325E18F59404002F121F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OSX,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"thirdparty/tclap-1.2.1/include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1FDC325F18F59404002F121F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = OSX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"thirdparty/tclap-1.2.1/include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FDC324F18F59404002F121F /* Build configuration list for PBXProject "blur_hdr_cube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDC325B18F59404002F121F /* Debug */,
+				1FDC325C18F59404002F121F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FDC325D18F59404002F121F /* Build configuration list for PBXNativeTarget "blur_hdr_cube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDC325E18F59404002F121F /* Debug */,
+				1FDC325F18F59404002F121F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1FDC324C18F59404002F121F /* Project object */;
+}
