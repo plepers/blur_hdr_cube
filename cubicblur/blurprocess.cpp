@@ -118,7 +118,7 @@ float** blurFaces( float ** faces, int inputSize, int outputSize, float power, f
 }
 
 
-#ifdef OSX
+#ifdef __APPLE__
 
 void WaitForThreads( int NUM_THREADS, pthread_t* threads ){
     
@@ -158,7 +158,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 	HANDLE* handles = (HANDLE*) malloc( outputSize * sizeof( HANDLE ) );
 #endif
 
-#ifdef OSX
+#ifdef __APPLE__
     pthread_t threads[outputSize];
     int rc;
 #endif
@@ -191,7 +191,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -203,7 +203,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
         
@@ -235,7 +235,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -247,7 +247,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
 	}
@@ -279,7 +279,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -291,7 +291,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
 	}
@@ -322,7 +322,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -334,7 +334,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
 	}
@@ -366,7 +366,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -378,7 +378,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
 	}
@@ -411,7 +411,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
             
-#ifdef OSX
+#ifdef __APPLE__
             rc = pthread_create(&threads[x], NULL, getBlur, (void *) &params[x]);
             assert(0 == rc);
 #endif
@@ -423,7 +423,7 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 		WaitForMultipleObjects( outputSize, handles, true, INFINITE );
 #endif
         
-#ifdef OSX
+#ifdef __APPLE__
         WaitForThreads( outputSize, threads );
 #endif
 

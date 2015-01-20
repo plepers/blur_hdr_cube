@@ -24,4 +24,4 @@ float** computeBlur( CubePixel ** faces, int outputSize, float power, float curv
 
 CubePixel** createCpMap( float ** faces, int inputSize );
 
-#endif BLUR_PROCESS_H
+#endif

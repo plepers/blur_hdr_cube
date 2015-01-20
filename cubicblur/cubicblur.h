@@ -15,7 +15,7 @@
 #endif
 
 
-#ifdef OSX
+#ifdef __APPLE__
 #include <pthread.h>
 #include <stdlib.h>
 #include <math.h>

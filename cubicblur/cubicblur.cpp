@@ -41,8 +41,8 @@ bool IsPowerOfTwo(unsigned int x)
 }
 
 double getNewBase( char min, char max ) {
-	double newbaseMax = pow( pow( 2.0, max ), 1.0/128.0 );
-	double newbaseMin = pow( pow( 2.0, min ), -1.0/128.0 );
+	double newbaseMax = pow( pow( 2.0, (double)max ), 1.0/128.0 );
+	double newbaseMin = pow( pow( 2.0, (double)min ), -1.0/128.0 );
     
     if( newbaseMax > newbaseMin)
         return newbaseMax;
