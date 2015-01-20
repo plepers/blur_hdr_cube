@@ -18,9 +18,9 @@ typedef struct pixel {
 	float b;
 } Pixel;
 
-float** blurFaces( float ** faces, int inputSize, int outputSize, float power, float curve );
+float** blurFaces( float ** faces, int inputSize, int outputSize, float power, float curve, float mix );
 
-float** computeBlur( CubePixel ** faces, int outputSize, float power, float curve );
+float** computeBlur( CubePixel ** faces, int outputSize, float power, float curve, float mix );
 
 CubePixel** createCpMap( float ** faces, int inputSize );
 

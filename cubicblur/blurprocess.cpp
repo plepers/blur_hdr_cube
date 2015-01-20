@@ -6,13 +6,15 @@ typedef struct core_blur_params {
 	float y;
 	float z;
 	CubePixel ** faces;
+    CubePixel *pix;
 	float power;
 	float curve;
 	int facesize;
 	float* res;
+    float mix;
 } BLURPARAM;
 
-float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve );
+float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve, float mix );
 
 
 
@@ -28,6 +30,7 @@ void* getBlur( void* in ) {
 	float curve = params->curve;
 	float mcurve = 1.0f-curve;
 	float invCurve = 1.0f/curve;
+    float mix = params->mix;
 
 	CubePixel ** faces = params->faces;
 
@@ -89,21 +92,23 @@ void* getBlur( void* in ) {
 	trR /= bias;
 	trG /= bias;
 	trB /= bias;
+    
+    float invMix = 1.0 - mix;
 	
-	params->res[0] = float( trR );
-	params->res[1] = float( trG );
-	params->res[2] = float( trB );
+	params->res[0] = invMix * float( trR ) + params->pix->r * mix;
+	params->res[1] = invMix * float( trG ) + params->pix->g * mix;
+	params->res[2] = invMix * float( trB ) + params->pix->b * mix;
     
     return NULL;
 
 }
 
-float** blurFaces( float ** faces, int inputSize, int outputSize, float power, float curve ) {
+float** blurFaces( float ** faces, int inputSize, int outputSize, float power, float curve, float mix ) {
 
 	CubePixel** cfaces = createCpMap( faces, inputSize );
 
 
-	float** blur = computeBlur( cfaces, inputSize, outputSize, power, curve );
+	float** blur = computeBlur( cfaces, inputSize, outputSize, power, curve, mix );
 
 
 	// free
@@ -134,7 +139,7 @@ void WaitForThreads( int NUM_THREADS, pthread_t* threads ){
 #endif
 
 
-float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve ) {
+float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float power, float curve, float mix ) {
 
 	int j;
 	int y,x,c;
@@ -171,6 +176,8 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 
 	bface = bfaces[0];
 	c = 0;
+    
+    int dfx, dfy;
 
 	for (y = 0; y < outputSize; ++y) {
 		for (x = 0;x < outputSize; ++x) {
@@ -178,15 +185,20 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = -1.0f;
 			py = -(y+.5f) * invSize2 + 1.0f;
 			pz = (x+.5f) * invSize2 - 1.0f;
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
 			
 			params[x].x = px;
 			params[x].y = py;
-			params[x].z = pz;
+            params[x].z = pz;
+            params[x].pix = &faces[0][(dfy  * inputSize ) + dfx ];
 			params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;
-			params[x].facesize= inputSize;
-			params[x].res= &bface[c*3];
+            params[x].facesize= inputSize;
+            params[x].res= &bface[c*3];
+            params[x].mix= mix;
 #ifdef WIN
 			handles[x] = (HANDLE) _beginthread( getBlur, 0, &params[x]  );
 #endif
@@ -221,11 +233,15 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = 1.0f;
 			py = -(y+.5f) * invSize2 + 1.0f;
 			pz = -(x+.5f) * invSize2 + 1.0f;
-
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
+            
 			params[x].x = px;
-			params[x].y = py;
-			params[x].z = pz;
-			params[x].faces= faces;
+            params[x].y = py;
+            params[x].z = pz;
+            params[x].pix = &faces[1][(dfy  * inputSize ) + dfx ];
+            params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;
 			params[x].facesize= inputSize;
@@ -265,10 +281,14 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = (x+.5f) * invSize2 - 1.0f;
 			py = 1.0f;
 			pz = (y+.5f) * invSize2 - 1.0f;
-
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
+            
 			params[x].x = px;
 			params[x].y = py;
-			params[x].z = pz;
+            params[x].z = pz;
+            params[x].pix = &faces[2][(dfy  * inputSize ) + dfx ];
 			params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;
@@ -308,10 +328,14 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = (x+.5f) * invSize2 - 1.0f;
 			py = -1.0f;
 			pz = -(y+.5f) * invSize2 + 1.0f;
-
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
+            
 			params[x].x = px;
 			params[x].y = py;
-			params[x].z = pz;
+            params[x].z = pz;
+            params[x].pix = &faces[3][(dfy  * inputSize ) + dfx ];
 			params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;
@@ -352,10 +376,14 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = -(x+.5f) * invSize2 + 1.0f;
 			py = -(y+.5f) * invSize2 + 1.0f;
 			pz = -1.0f;
-
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
+            
 			params[x].x = px;
 			params[x].y = py;
-			params[x].z = pz;
+            params[x].z = pz;
+            params[x].pix = &faces[5][(dfy  * inputSize ) + dfx ];
 			params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;
@@ -397,10 +425,14 @@ float** computeBlur( CubePixel ** faces, int inputSize, int outputSize, float po
 			px = (x+.5f) * invSize2 - 1.0f;
 			py = -(y+.5f) * invSize2 + 1.0f;
 			pz = 1.0f;
-
+            
+            dfx = ((float)(x / (float)outputSize ))*inputSize;
+            dfy = ((float)(y / (float)outputSize))*inputSize;
+            
 			params[x].x = px;
 			params[x].y = py;
-			params[x].z = pz;
+            params[x].z = pz;
+            params[x].pix = &faces[4][(dfy  * inputSize ) + dfx ];
 			params[x].faces= faces;
 			params[x].power= power;
 			params[x].curve = curve;

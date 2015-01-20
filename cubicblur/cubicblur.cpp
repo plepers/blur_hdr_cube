@@ -60,8 +60,9 @@ int main(int argc, char* argv[])
 	ValueArg<string> a_input("i","input","input raw cube texture",true,"","string", cmd );
 	ValueArg<string> a_output("o","output","output raw file",true,"","string", cmd );
 	
-	ValueArg<float> a_power("p","power","fresnel power",false,1.0,"float", cmd );
-	ValueArg<float> a_curve("c","curve","dot curve",false,1.0,"float", cmd );
+    ValueArg<float> a_power("p","power","fresnel power",false,1.0,"float", cmd );
+    ValueArg<float> a_curve("c","curve","dot curve",false,1.0,"float", cmd );
+    ValueArg<float> a_mix("m","mix","dot curve",false,0.0,"float", cmd );
 	ValueArg<int> a_size("s","size","output size",false,64,"int", cmd );
 	
 	SwitchArg a_rebase("r","rebase", "maximize exponent range", true);
@@ -72,8 +73,9 @@ int main(int argc, char* argv[])
 	const char* input = a_input.getValue().c_str();
 	const char* output = a_output.getValue().c_str();
 	
-	const float power = a_power.getValue();
-	const float curve = a_curve.getValue();
+    const float power = a_power.getValue();
+    const float curve = a_curve.getValue();
+    const float mix = a_mix.getValue();
 	int size = a_size.getValue();
 	const bool rebase = a_rebase.getValue();
 
@@ -139,7 +141,7 @@ int main(int argc, char* argv[])
 		faces = sfaces;
 	}
 
-	float** blurred = blurFaces( faces, faceSize, size, power, curve );
+	float** blurred = blurFaces( faces, faceSize, size, power, curve, mix );
 	
 	
 	//size =  hdrData->height/4;
